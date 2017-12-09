@@ -9,7 +9,7 @@ pub enum Link {
     More(Box<Node>),
 }
 
-struct Node {
+pub struct Node {
     elem: i32,
     next: Link,
 }

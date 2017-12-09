@@ -39,6 +39,12 @@ impl<T> List<T> {
             &node.elem
         })
     }
+
+    pub fn peek_mut(&mut self) -> Option<&mut T> {
+        self.head.as_mut().map(|node| {
+            &mut node.elem
+        })
+    }
 }
 
 impl<T> Drop for List<T> {
@@ -91,5 +97,16 @@ mod test {
         // does not take off elements from the list
         let item = list.peek();
         assert_eq!(item, Some(&2));
+    }
+
+    #[test]
+    fn peek_mut_test() {
+        let mut list : List<i32> = List::new();
+
+        list.push(1);
+        list.push(2);
+
+        let item : Option<&mut i32> = list.peek_mut();
+        assert_eq!(item, Some(&mut 2));
     }
 }
